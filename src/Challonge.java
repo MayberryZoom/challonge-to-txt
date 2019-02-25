@@ -4,65 +4,76 @@ import java.awt.event.*;
 public class Challonge extends Frame implements ActionListener, WindowListener, KeyListener {
 	private String tournament = "";
 	private String api_key = "";
-	private int displayCount = 0;
-	private int refresh = 0;
+	private int display_count = 3;
+	private int refresh = 1;
 
 	public Challonge () {
-	   setLayout(new FlowLayout());
+	   Frame frame = new Frame();
+	   frame.setLayout(new FlowLayout());
 
-	   Panel pnlTournament = new Panel();
-	   add(pnlTournament);
-	   Panel pnlApi = new Panel();
-	   add(pnlApi);
-	   Panel pnlBottom = new Panel();
-	   add(pnlBottom);
-	   Panel pnlDisplayCount = new Panel();
-	   pnlBottom.add(pnlDisplayCount);
-	   Panel pnlRefresh = new Panel();
-	   pnlBottom.add(pnlRefresh);
-	   Panel pnlConfirm = new Panel();
-	   pnlBottom.add(pnlConfirm);
+	   Panel pnl_tournament = new Panel();
+	   frame.add(pnl_tournament);
+	   Panel pnl_api = new Panel();
+	   frame.add(pnl_api);
+	   Panel pnl_bottom = new Panel();
+	   frame.add(pnl_bottom);
+	   Panel pnl_displayCount = new Panel();
+	   pnl_bottom.add(pnl_displayCount);
+	   Panel pnl_refresh = new Panel();
+	   pnl_bottom.add(pnl_refresh);
+	   Panel pnl_confirm = new Panel();
+	   pnl_bottom.add(pnl_confirm);
 
-	   Label lblTournament = new Label("Tournament Link:");
-	   pnlTournament.add(lblTournament);
+	   Label lbl_tournament = new Label("Tournament Link:");
+	   pnl_tournament.add(lbl_tournament);
 
-	   TextField tfTournament = new TextField(tournament, 45);
-	   tfTournament.setEditable(true);
-	   pnlTournament.add(tfTournament);
+	   TextField tf_tournament = new TextField(tournament + "", 45);
+	   tf_tournament.setEditable(true);
+	   pnl_tournament.add(tf_tournament);
 
-	   Label lblApi = new Label("API Key:");
-	   pnlApi.add(lblApi);
+	   Label lbl_api = new Label("API Key:");
+	   pnl_api.add(lbl_api);
 
-	   TextField tfApi = new TextField(api_key, 40);
-	   tfApi.setEditable(true);
-	   pnlApi.add(tfApi);
+	   TextField tf_api = new TextField(api_key + "", 40);
+	   tf_api.setEditable(true);
+	   pnl_api.add(tf_api);
 
-	   Label lblDisplayCount = new Label("Sets to Display:");
-	   pnlDisplayCount.add(lblDisplayCount);
+	   Label lbl_displayCount = new Label("Sets to Display:");
+	   pnl_displayCount.add(lbl_displayCount);
 
-	   TextField tfDisplayCount = new TextField(displayCount + "", 10);
-	   tfDisplayCount.setEditable(true);
-	   pnlRefresh.add(tfDisplayCount);
+	   TextField tf_displayCount = new TextField(display_count + "", 10);
+	   tf_displayCount.setEditable(true);
+	   pnl_refresh.add(tf_displayCount);
 
-	   Label lblRefresh = new Label("Refresh Rate:");
-	   pnlRefresh.add(lblRefresh);
+	   Label lbl_refresh = new Label("Refresh Rate:");
+	   pnl_refresh.add(lbl_refresh);
 
-	   TextField tfRefresh = new TextField(refresh + "", 10);
-	   tfRefresh.setEditable(true);
-	   pnlRefresh.add(tfRefresh);
+	   TextField tf_refresh = new TextField(refresh + "", 10);
+	   tf_refresh.setEditable(true);
+	   pnl_refresh.add(tf_refresh);
 
-	   Button btnConfirm = new Button("Confirm");
-	   pnlConfirm.add(btnConfirm);
+	   Button btn_confirm = new Button("Confirm");
+	   pnl_confirm.add(btn_confirm);
 
-	   addWindowListener(this);
-	   tfTournament.addKeyListener(this);
-	   tfApi.addKeyListener(this);
-	   tfDisplayCount.addKeyListener(this);
-	   tfRefresh.addKeyListener(this);
-
-	   setTitle("Grab Recent Sets");
-	   setSize(600, 200);
-	   setVisible(true);
+	   frame.addWindowListener(this);
+	   tf_tournament.addKeyListener(this);
+	   tf_api.addKeyListener(this);
+	   tf_displayCount.addKeyListener(this);
+	   tf_refresh.addKeyListener(this);
+	   
+	   final MenuBar menuBar = new MenuBar();
+	   Menu options = new Menu("Options");
+	   
+	   MenuItem menu_default = new MenuItem("Reset to Default");
+	   menu_default.setActionCommand("default");
+	   
+	   options.add(menu_default);
+	   menuBar.add(options);
+	   frame.setMenuBar(menuBar);
+	   
+	   frame.setTitle("Grab Recent Sets");
+	   frame.setSize(600, 250);
+	   frame.setVisible(true);
 	}
 
 	public static void main(String[] args) {

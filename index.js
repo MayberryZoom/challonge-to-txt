@@ -1,7 +1,7 @@
 const axios = require('axios');
 const fs = require('fs');
 
-const { options, count, tournament } = require('./config.json');
+const { options, displayCount, tournament, refresh } = require('./config.json');
 
 console.log('Starting...');
 axios.get('https://api.challonge.com/v1/tournaments/isacord-singles1/matches.json', options)
