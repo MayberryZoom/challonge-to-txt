@@ -1,4 +1,4 @@
-/node_modules
-/bin/
-/.output/
-.project
+/node_modules/
+config.json
+matches.json
+participants.json
